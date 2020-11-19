@@ -15,6 +15,7 @@ function HomeScreen({ navigation }) {
             height: 250,
             width: 120,
             
+            
 
 
           }} source={require("./assets/basket.png")}/>  

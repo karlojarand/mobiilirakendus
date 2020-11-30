@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native';
 import { ImageButton } from 'react-native-image-button-text';
+import { useState } from 'react';
 
 
 
@@ -23,9 +24,9 @@ function HomeScreen({ navigation }) {
 
 {/* ESILEHE NUPU SEADISTUS */}
 <TouchableOpacity>
-  <ImageButton width={120} height={12} text=""/>
-  <ImageButton style ={{marginTop:0}}
-    width={120}
+  <ImageButton width={120} height={20} text=""/>
+  <ImageButton style ={{marginTop:0, marginLeft:20}}
+    width={115}
     height={120}
     text=""
     onPress={() => navigation.navigate('Details')}
@@ -44,18 +45,29 @@ function HomeScreen({ navigation }) {
 
 function DetailsScreen() {
 
-  // const [name, setName] = useState('karl');
-  // const [age, setAge] = useState('30');
+   const [name, setName] = useState(''); 
+   const [age, setAge] = useState('');
 
   return (
-    //TEXT INPUT
+    //TEXT INPUT NAME
      <View style={styles.container}>
        <Text style={styles.titleText}>Add Player:</Text>
        <TextInput style={styles.input}
        placeholder='Enter your name'
        onChangeText={(val) =>setName(val)}
        />
-       
+      
+
+       {/* TEXT INPUT ROUNDS */}
+        
+        <TextInput 
+        keyboardType ='numeric'
+        style={styles.input}
+        placeholder='5-20'
+        onChangeText={(val) => setAge(val)}
+        />
+<Text style={styles.secondText}>Player: {name}</Text>
+  <Text style={styles.secondText}>Number of rounds: {age}</Text>
      </View>
      
   );
@@ -105,7 +117,12 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     height: 120,
     width: 120
-  }
+  },
+  secondText: {
+    marginTop: 20,
+    textAlign: 'center',
+    fontSize: 20,
+  },
 });
 
 export default App;

@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native';
 import { ImageButton } from 'react-native-image-button-text';
 import { useState } from 'react';
+//COUNTER
+import CounterInput from "react-native-counter-input";
 
 
 
@@ -29,12 +31,12 @@ function HomeScreen({ navigation }) {
     width={115}
     height={120}
     text=""
-    onPress={() => navigation.navigate('Details')}
+    onPress={() => navigation.navigate('Round Details')}
     source={require('./assets/huklab.png')}/>
   
     <Button
         title="PRESS TO START"
-        onPress={() => navigation.navigate('Details')
+        onPress={() => navigation.navigate('Round Details')
       }/>
 </TouchableOpacity>   
       </View>
@@ -43,7 +45,7 @@ function HomeScreen({ navigation }) {
 
 //UUS LEHEKÜLG LISATUD
 
-function DetailsScreen() {
+function DetailsScreen({ navigation }) {
 
    const [name, setName] = useState(''); 
    const [age, setAge] = useState('');
@@ -68,19 +70,199 @@ function DetailsScreen() {
         />
 <Text style={styles.secondText}>Player: {name}</Text>
   <Text style={styles.secondText}>Number of rounds: {age}</Text>
+  
+  <Button
+        title="START"
+        onPress={() => navigation.navigate('Round 1')
+        
+      }/>
      </View>
      
   );
 }
 
+// KOLMAS VAADE - ROUND 1
+function RoundsScreen({ navigation }) {
+
+   return(
+    <View>
+      <Text style={styles.secondText}>Player name:</Text>
+        <Text style={styles.secondText}>Round: 1/5</Text>
+          <Text style={styles.secondText}>Length: 10 m</Text>
+
+        <CounterInput
+  onChange={(counter) => {
+    console.log("onChange Counter:", counter);
+  }}
+/>
+<Text style={styles.secondText}>Hits: </Text>
+
+<Text style={styles.secondText}>Round Score: </Text>
+<Text style={styles.secondText}>Overall score: </Text>
+
+<Button
+        title="Next Round"
+        onPress={() => navigation.navigate('Round 2')
+        
+      }/>
+    </View>
+    
+   );
+}
+
+//NELJAS VAADE - ROUND 2
+function Rounds2Screen({ navigation }) {
+
+  return(
+   <View>
+     <Text style={styles.secondText}>Player name:</Text>
+       <Text style={styles.secondText}>Round: 2/5</Text>
+         <Text style={styles.secondText}>Length: 10 m</Text>
+
+       <CounterInput
+ onChange={(counter) => {
+   console.log("onChange Counter:", counter);
+ }}
+/>
+<Text style={styles.secondText}>Hits: </Text>
+
+<Text style={styles.secondText}>Round Score: </Text>
+<Text style={styles.secondText}>Overall score: </Text>
+
+<Button
+       title="Next Round"
+       onPress={() => navigation.navigate('Round 3')
+       
+     }/>
+   </View>
+   
+  );
+}
+
+//VIIES VAADE - ROUND 3
+function Rounds3Screen({ navigation }) {
+
+  return(
+   <View>
+     <Text style={styles.secondText}>Player name:</Text>
+       <Text style={styles.secondText}>Round: 3/5</Text>
+         <Text style={styles.secondText}>Length: 10 m</Text>
+
+       <CounterInput
+ onChange={(counter) => {
+   console.log("onChange Counter:", counter);
+ }}
+/>
+<Text style={styles.secondText}>Hits: </Text>
+
+<Text style={styles.secondText}>Round Score: </Text>
+<Text style={styles.secondText}>Overall score: </Text>
+
+<Button
+       title="Next Round"
+       onPress={() => navigation.navigate('Round 4')
+       
+     }/>
+   </View>
+   
+  );
+}
+
+//KUUES VAADE - ROUND 4
+function Rounds4Screen({ navigation }) {
+
+  return(
+   <View>
+     <Text style={styles.secondText}>Player name:</Text>
+       <Text style={styles.secondText}>Round: 4/5</Text>
+         <Text style={styles.secondText}>Length: 10 m</Text>
+
+       <CounterInput
+ onChange={(counter) => {
+   console.log("onChange Counter:", counter);
+ }}
+/>
+<Text style={styles.secondText}>Hits: </Text>
+
+<Text style={styles.secondText}>Round Score: </Text>
+<Text style={styles.secondText}>Overall score: </Text>
+
+<Button
+       title="Next Round"
+       onPress={() => navigation.navigate('Round 5')
+       
+     }/>
+   </View>
+   
+  );
+}
+
+//SEITSMES VAADE - ROUND 5
+function Rounds5Screen({ navigation }) {
+
+  return(
+   <View>
+     <Text style={styles.secondText}>Player name:</Text>
+       <Text style={styles.secondText}>Round: 5/5</Text>
+         <Text style={styles.secondText}>Length: 10 m</Text>
+
+       <CounterInput
+ onChange={(counter) => {
+   console.log("onChange Counter:", counter);
+ }}
+/>
+<Text style={styles.secondText}>Hits: </Text>
+
+<Text style={styles.secondText}>Round Score: </Text>
+<Text style={styles.secondText}>Overall score: </Text>
+
+<Button
+       title="FINISH ROUND"
+       onPress={() => navigation.navigate('Statistics')
+       
+     }/>
+   </View>
+   
+  );
+}
+
+//KAHEKSAS VAADE - STATISTIKA
+
+function Statistics({ navigation }) {
+
+  return(
+   <View>
+     <Text style={styles.secondText}>Statistics</Text>
+
+
+<Button
+       title="New Round"
+       onPress={() => navigation.navigate('Round Details')
+       
+     }/>
+   </View>
+   
+  );
+}
+
+
+
 const Stack = createStackNavigator();
 
+//VAADETE LIST
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Disc Golf Putting League" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Round Details" component={DetailsScreen} />
+        <Stack.Screen name="Round 1" component={RoundsScreen} />
+        <Stack.Screen name="Round 2" component={Rounds2Screen} />
+        <Stack.Screen name="Round 3" component={Rounds3Screen} />
+        <Stack.Screen name="Round 4" component={Rounds4Screen} />
+        <Stack.Screen name="Round 5" component={Rounds5Screen} />
+        <Stack.Screen name="Statistics" component={Statistics} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

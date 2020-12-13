@@ -7,6 +7,7 @@ import { ImageButton } from 'react-native-image-button-text';
 import { useState } from 'react';
 //COUNTER
 import CounterInput from "react-native-counter-input";
+import { block } from 'react-native-reanimated';
 
 
 
@@ -43,7 +44,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-//UUS LEHEKÜLG LISATUD
+//2 LEHT - ROUND DETAILS 
 
 function DetailsScreen({ navigation }) {
 
@@ -51,21 +52,21 @@ function DetailsScreen({ navigation }) {
    const [age, setAge] = useState('');
 
   return (
-    //TEXT INPUT NAME
+    //TEXT INPUT NIMI
      <View style={styles.container}>
        <Text style={styles.titleText}>Add Player:</Text>
+
        <TextInput style={styles.input}
        placeholder='Enter your name'
        onChangeText={(val) =>setName(val)}
        />
-      
 
-       {/* TEXT INPUT ROUNDS */}
+       {/* TEXT INPUT ROUNDID */}
         
         <TextInput 
         keyboardType ='numeric'
         style={styles.input}
-        placeholder='5-20'
+        placeholder='max/min 5 rounds'
         onChangeText={(val) => setAge(val)}
         />
 <Text style={styles.secondText}>Player: {name}</Text>
@@ -77,9 +78,7 @@ function DetailsScreen({ navigation }) {
         
       }/>
      </View>
-     
-  );
-}
+  );}
 
 // KOLMAS VAADE - ROUND 1
 function RoundsScreen({ navigation }) {
@@ -91,11 +90,13 @@ function RoundsScreen({ navigation }) {
           <Text style={styles.secondText}>Length: 10 m</Text>
 
         <CounterInput
+        min={0}
+        max={5}
   onChange={(counter) => {
     console.log("onChange Counter:", counter);
   }}
 />
-<Text style={styles.secondText}>Hits: </Text>
+<Text style={styles.secondText}>Hits:  </Text>
 
 <Text style={styles.secondText}>Round Score: </Text>
 <Text style={styles.secondText}>Overall score: </Text>
@@ -117,7 +118,7 @@ function Rounds2Screen({ navigation }) {
    <View>
      <Text style={styles.secondText}>Player name:</Text>
        <Text style={styles.secondText}>Round: 2/5</Text>
-         <Text style={styles.secondText}>Length: 10 m</Text>
+         <Text style={styles.secondText}>Length: 9 m</Text>
 
        <CounterInput
  onChange={(counter) => {
@@ -146,7 +147,7 @@ function Rounds3Screen({ navigation }) {
    <View>
      <Text style={styles.secondText}>Player name:</Text>
        <Text style={styles.secondText}>Round: 3/5</Text>
-         <Text style={styles.secondText}>Length: 10 m</Text>
+         <Text style={styles.secondText}>Length: 8 m</Text>
 
        <CounterInput
  onChange={(counter) => {
@@ -175,7 +176,7 @@ function Rounds4Screen({ navigation }) {
    <View>
      <Text style={styles.secondText}>Player name:</Text>
        <Text style={styles.secondText}>Round: 4/5</Text>
-         <Text style={styles.secondText}>Length: 10 m</Text>
+         <Text style={styles.secondText}>Length: 7 m</Text>
 
        <CounterInput
  onChange={(counter) => {
@@ -204,7 +205,7 @@ function Rounds5Screen({ navigation }) {
    <View>
      <Text style={styles.secondText}>Player name:</Text>
        <Text style={styles.secondText}>Round: 5/5</Text>
-         <Text style={styles.secondText}>Length: 10 m</Text>
+         <Text style={styles.secondText}>Length: 6 m</Text>
 
        <CounterInput
  onChange={(counter) => {
@@ -232,7 +233,14 @@ function Statistics({ navigation }) {
 
   return(
    <View>
-     <Text style={styles.secondText}>Statistics</Text>
+     <Text style={styles.secondText}>Hits from 10m:</Text>
+     <Text style={styles.secondText}>Hits from 9m:</Text>
+     <Text style={styles.secondText}>Hits from 8m:</Text>
+     <Text style={styles.secondText}>Hits from 7m:</Text>
+     <Text style={styles.secondText}>Hits from 6m:</Text>
+     
+
+    
 
 
 <Button
@@ -288,11 +296,12 @@ const styles = StyleSheet.create({
   },
   //INPUTI STIIL
   input: {
+    alignSelf: 'center',
     textAlign: 'center',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#777',
     padding: 8,
-    margin: 10,
+    marginTop: 50,
     width: 200,
   },
   ImageIconStyle: {
